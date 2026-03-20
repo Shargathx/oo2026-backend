@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*") // ebaturvaline, päris arendustes ei tehta
+// @CrossOrigin(origins = "http://localhost:5173") // õige, turvaline viis
+// @CrossOrigin(origins = "http://www.arvutitark.ee") // ainult see domeen pääseb ligi
 @RestController
 public class CategoryController {
 
