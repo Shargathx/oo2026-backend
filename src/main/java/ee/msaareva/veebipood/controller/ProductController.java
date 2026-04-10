@@ -3,6 +3,8 @@ package ee.msaareva.veebipood.controller;
 import ee.msaareva.veebipood.entity.Product;
 import ee.msaareva.veebipood.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +31,11 @@ public class ProductController {
     @GetMapping("products")
     public List<Product> getProducts() {
         return productRepository.findAll();
+    }
+
+    @GetMapping("products/admin")
+    public Page<Product> getAdminProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 
     @GetMapping("products/{id}")
