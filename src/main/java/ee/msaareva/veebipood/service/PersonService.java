@@ -19,9 +19,9 @@ public class PersonService {
     }
 
     public void validate(Person person){
-        if (person.getId() != null) {
-            throw new RuntimeException("Cannot sign up with ID");
-        }
+//        if (person.getId() != null) {
+//            throw new RuntimeException("Cannot sign up with ID");
+//        }
         if (person.getEmail() == null) {
             throw new RuntimeException("Cannot sign up without email");
         }

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @AllArgsConstructor
@@ -33,9 +34,26 @@ public class PersonController {
     }
 
     @PostMapping("signup")
-    public Person signup(@RequestBody Person person) {
+    public Person signup(@RequestBody Person person) { // signupil pole vaja tervet isikut, TODO: PersonSignupDto
+        if (person.getId() != null) {
+            throw new RuntimeException("Cannot sign up with ID");
+        }
         personService.validate(person);
         return personRepository.save(person);
+    }
+
+    @PutMapping("profile")
+    public Person updateProfile(@RequestBody Person person) { // TODO: PersonSignupDto, pole vaja ID-d kaasa anda
+        if (person.getId() == null) {
+            throw new RuntimeException("Invalid ID");
+        }
+        personService.validate(person);
+        return personRepository.save(person);
+    }
+
+    @GetMapping("profile")
+    public Person getProfile(@RequestParam Long id) {
+        return personRepository.findById(id).orElseThrow();
     }
 
     @PostMapping("login")
